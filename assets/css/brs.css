@@ -1,4 +1,5 @@
-/* Additions to the existing BRS theme. Approved corporate hero, H01. */
+/* Corporate homepage: existing BRS palette, typography and components. */
+body { color: var(--white_color); }
 .preview--corporate {
     background: #121212 url('../contacts_img.png') center / cover no-repeat;
 }
@@ -48,4 +49,190 @@
     .preview--corporate video {
         display: none;
     }
+}
+
+.brs-section {
+    position: relative;
+    padding-block: clamp(48px, 2.216rem + 2.79vw, 64px);
+    scroll-margin-top: 60px;
+}
+
+.brs-section__column {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(32px, 2.216rem + 2.79vw, 64px);
+}
+
+.brs-title {
+    text-align: center;
+    text-wrap: balance;
+    background: linear-gradient(180deg, #fff 0%, #afb3c4 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.brs-intro,
+.brs-copy {
+    width: 100%;
+    max-width: 980px;
+    margin-inline: auto;
+    color: var(--gray-1_color);
+    text-align: center;
+}
+
+.brs-copy { display: grid; gap: 24px; }
+.brs-muted,
+.brs-note { color: var(--gray-1_color); }
+.brs-note { text-align: center; }
+.brs-centered { align-self: center; }
+
+.brs-grid { display: grid; gap: 24px; }
+.brs-grid--four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.brs-grid--three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.brs-grid > * { min-width: 0; max-width: none; }
+.brs-metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.brs-metrics .teams-item { max-width: none; gap: 12px; }
+.brs-metrics .teams-item__text { max-width: 220px; margin-inline: auto; }
+
+.brs-section--blue-in { background: linear-gradient(180deg, #121212, #082254); }
+.brs-section--blue-out { background: linear-gradient(180deg, #082254, #121212); }
+.brs-section--blue-cycle { background: linear-gradient(180deg, #121212, #082254 48%, #121212); }
+.brs-solution { text-align: center; justify-content: flex-start; }
+.brs-solution h3 { min-height: 38px; display: flex; align-items: center; justify-content: center; }
+.brs-technology { align-items: stretch; text-align: center; }
+.brs-technology h3 { min-height: 58px; display: flex; align-items: center; justify-content: center; }
+.brs-tech-list { display: grid; gap: 12px; color: var(--gray-1_color); }
+.brs-tech-list li + li { padding-top: 12px; border-top: 1px solid #afb3c421; }
+.brs-service { height: 100%; }
+.brs-service h3 { text-wrap: balance; }
+.brs-sap-card .button_v2 { margin-top: auto; text-align: center; padding-inline: 16px; }
+.brs-competencies { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.brs-competencies li {
+    padding: 20px 24px;
+    border: 1px solid #8f91a052;
+    border-radius: 24px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.4;
+    color: var(--gray-1_color);
+}
+.brs-industry img { filter: grayscale(1); }
+.brs-lifecycle { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; list-style: none; }
+.brs-lifecycle li { align-items: flex-start; text-align: left; gap: 20px; }
+.brs-step-number { color: var(--gray-1_color); font-size: 40px; font-weight: 600; line-height: 1.2; }
+.brs-case {
+    display: grid;
+    grid-template-columns: minmax(0, .75fr) minmax(0, 1.25fr);
+    align-items: center;
+    gap: 48px;
+    padding: 48px;
+    border: 1px solid var(--gray-3_color);
+    border-radius: 32px;
+    background: linear-gradient(193deg, #1c4d8d30, transparent);
+}
+.brs-case__logo { display: flex; justify-content: center; }
+.brs-case__logo img { width: min(100%, 260px); height: auto; }
+.brs-case__body { display: flex; flex-direction: column; align-items: flex-start; gap: 32px; color: var(--gray-1_color); }
+.brs-integrators { padding-block: 80px; }
+.brs-integrators .container { position: relative; z-index: 1; }
+.brs-legacy { padding-top: 0; }
+.brs-legacy details { border-top: 1px solid var(--gray-3_color); }
+.brs-legacy summary { padding-block: 28px; cursor: pointer; color: var(--gray-1_color); font-size: 18px; }
+.brs-legacy .careers,
+.brs-legacy .blog { scroll-margin-top: 140px; }
+.brs-legacy .brs-title { margin-bottom: 48px; }
+.brs-news { max-width: 800px; gap: 24px; }
+.brs-direction { min-height: 75vh; }
+.brs-direction .preview-portfolio__column { align-items: flex-start; gap: 28px; }
+.brs-direction p { max-width: 850px; }
+.brs-direction h1 { text-wrap: balance; }
+.contact-form > .text_16:last-child { margin-top: 20px; text-align: center; font-size: 14px; }
+.contact-form a { color: var(--acc-1_color); }
+.contacts__content > p { margin-block: 20px; }
+.submit:disabled { cursor: default; }
+.service-item::before,
+.solutions-item::before,
+.button_v1::before,
+.button_v2::before,
+.submit::before { pointer-events: none; }
+
+.brs-skip-link { position: fixed; left: 16px; top: -80px; padding: 14px 20px; background: #121212; border: 1px solid #2e87ff; border-radius: 12px; z-index: 2000; }
+.brs-skip-link:focus { top: 12px; }
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+.field:focus-visible { outline: 2px solid #2e87ff; outline-offset: 5px; }
+
+.header__logo img { display: block; width: 244px; height: auto; }
+.menu { flex-wrap: nowrap; align-items: center; gap: 20px; }
+.menu > li { white-space: nowrap; }
+.menu a:hover { color: #fff; }
+.header__contact { white-space: nowrap; }
+.nav-services { display: flex; align-items: center; gap: 4px; position: relative; }
+.nav-services__toggle { display: flex; align-items: center; justify-content: center; width: 24px; height: 28px; color: var(--gray-1_color); background: transparent; border-radius: 4px; }
+.nav-services__toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
+.nav-services__menu {
+    position: absolute;
+    top: calc(100% + 18px);
+    left: -24px;
+    width: 290px;
+    padding: 12px;
+    display: grid;
+    gap: 4px;
+    background: #121212f5;
+    border: 1px solid var(--gray-3_color);
+    border-radius: 16px;
+    box-shadow: 0 16px 32px #0005;
+}
+.nav-services__menu[hidden] { display: none; }
+.nav-services__menu a { display: block; white-space: normal; padding: 12px; border-radius: 8px; font-size: 16px; line-height: 1.3; }
+.nav-services__menu a:hover { background: #1c4d8d3d; }
+.mobile-nav { top: 0; transform: translateY(-110%); visibility: hidden; pointer-events: none; max-height: 100dvh; }
+.mobile-nav_active { transform: translateY(0); visibility: visible; pointer-events: auto; }
+.mobile-nav__column { padding-bottom: 32px; }
+.brs-nav-open { overflow: hidden; }
+
+@media (max-width: 1320px) {
+    .header__row > nav,
+    .header__row .header__contact { display: none; }
+    .header__burger { display: flex; }
+    .mobile-nav { display: block; }
+    .header__row { padding-block: 24px; }
+    .header__logo img { max-width: 195px; }
+}
+
+@media (max-width: 1024px) {
+    .brs-grid--four { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .brs-grid--three { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .brs-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 0; }
+    .brs-metrics .teams-item:nth-child(even)::before { display: none; }
+    .brs-lifecycle { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .brs-case { gap: 32px; padding: 32px; }
+}
+
+@media (max-width: 600px) {
+    .brs-grid--four,
+    .brs-grid--three,
+    .brs-competencies,
+    .brs-lifecycle { grid-template-columns: minmax(0, 1fr); }
+    .brs-metrics { grid-template-columns: minmax(0, 1fr); }
+    .brs-metrics .teams-item::before { display: none; }
+    .brs-copy { gap: 20px; }
+    .brs-solution h3,
+    .brs-technology h3 { min-height: 0; }
+    .brs-grid { gap: 20px; }
+    .brs-case { grid-template-columns: minmax(0, 1fr); padding: 28px 24px; }
+    .brs-case__logo img { width: 200px; }
+    .brs-case__body { align-items: center; text-align: center; }
+    .brs-integrators { padding-block: 64px; }
+    .brs-lifecycle li { flex-direction: row; align-items: center; }
+    .brs-lifecycle h3 { text-align: left; }
+    .brs-competencies li { padding-block: 16px; }
+    .footer__nav { flex-wrap: wrap; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html, body { scroll-behavior: auto; }
+    .mobile-nav { transition: none; }
 }

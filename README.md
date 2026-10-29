@@ -1,2 +1,3 @@
-# bestrun-solutions-preview
-Generated design preview for Best-Run Solutions. Enquiries are disabled.
+# Best-Run Solutions — design preview
+
+Generated from the private development repository. Enquiries are disabled.

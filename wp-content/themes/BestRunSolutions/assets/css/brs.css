@@ -1,0 +1,51 @@
+/* Additions to the existing BRS theme. Approved corporate hero, H01. */
+.preview--corporate {
+    background: #121212 url('../contacts_img.png') center / cover no-repeat;
+}
+
+.preview--corporate .preview__title {
+    max-width: 1120px;
+    text-wrap: balance;
+}
+
+.preview__actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 64px;
+}
+
+.preview__actions .preview__link {
+    margin-top: 0;
+}
+
+.brs-anchor {
+    display: block;
+    scroll-margin-top: 130px;
+}
+
+#products,
+#contacts {
+    scroll-margin-top: 60px;
+}
+
+.preview__actions a:focus-visible {
+    outline: 2px solid #2E87FF;
+    outline-offset: 5px;
+}
+
+@media (max-width: 600px) {
+    .preview__actions {
+        flex-direction: column;
+        width: 100%;
+        max-width: 320px;
+        margin-top: 48px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .preview--corporate video {
+        display: none;
+    }
+}

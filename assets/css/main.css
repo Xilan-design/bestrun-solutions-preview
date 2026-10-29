@@ -1377,7 +1377,7 @@ footer {
     margin-bottom: clamp(24px, 1.179rem + 1.28vw, 32px);
 }
 
-.card form{
+.card .contact-form {
     display:flex;
     flex-direction:column;
 }

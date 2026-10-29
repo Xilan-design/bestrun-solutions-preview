@@ -1,3 +1,3 @@
-# Best-Run Solutions — design preview
+# Best-Run Solutions
 
-Generated from the private development repository. Enquiries are disabled.
+Static HTML/CSS/JavaScript design preview. Enquiries are disabled.

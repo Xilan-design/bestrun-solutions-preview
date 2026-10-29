@@ -236,3 +236,85 @@ summary:focus-visible,
     html, body { scroll-behavior: auto; }
     .mobile-nav { transition: none; }
 }
+
+/* Service pages extend the original portfolio hero and BRS card system. */
+.brs-service-hero .container { padding-block: 160px 80px; }
+.brs-service-hero .preview-portfolio__column { align-items: flex-start; gap: 28px; }
+.brs-service-hero h1 { max-width: 1100px; text-wrap: balance; }
+.brs-service-hero p { max-width: 900px; }
+.brs-service-hero .brs-centered { align-self: flex-start; }
+.brs-hero-proofs { display: flex; flex-wrap: wrap; gap: 12px; }
+.brs-hero-proofs span { padding: 12px 18px; border: 1px solid #8f91a052; border-radius: 12px; font-size: 16px; line-height: 1.4; background: #12121270; }
+.brs-jump-links { display: flex; flex-wrap: wrap; gap: 16px 28px; margin-top: 12px; }
+.brs-jump-links a { color: var(--gray-1_color); font-size: 16px; line-height: 1.5; border-bottom: 1px solid #8f91a052; }
+.brs-jump-links a:hover { color: var(--white_color); }
+.brs-grid--two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.brs-step-flow { display: grid; gap: 24px; list-style: none; }
+.brs-step-flow--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.brs-step-flow--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.brs-step-flow .solutions-item { min-width: 0; max-width: none; align-items: flex-start; gap: 24px; text-align: left; }
+.brs-proof-panel { display: flex; flex-direction: column; align-items: flex-start; gap: 24px; max-width: 980px; width: 100%; margin-inline: auto; padding: 32px; border: 1px solid #8f91a052; border-radius: 24px; background: linear-gradient(135deg, #1c4d8d30, #12121230); }
+.brs-proof-panel p { color: var(--gray-1_color); }
+.brs-faq { display: grid; gap: 16px; max-width: 980px; width: 100%; margin-inline: auto; }
+.brs-faq-item { border: 1px solid #8f91a052; border-radius: 24px; }
+.brs-faq-item summary { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 28px 32px; font-size: 18px; font-weight: 500; line-height: 1.4; cursor: pointer; list-style: none; }
+.brs-faq-item summary::-webkit-details-marker { display: none; }
+.brs-faq-item > div { padding: 0 32px 28px; color: var(--gray-1_color); }
+.brs-faq-icon { position: relative; width: 18px; height: 18px; flex: 0 0 18px; }
+.brs-faq-icon::before, .brs-faq-icon::after { content: ''; position: absolute; background: var(--gray-1_color); }
+.brs-faq-icon::before { width: 18px; height: 2px; top: 8px; left: 0; }
+.brs-faq-icon::after { height: 18px; width: 2px; top: 0; left: 8px; }
+.brs-faq-item[open] .brs-faq-icon::after { display: none; }
+.brs-final-cta { background: #121212 url('../contacts_img.png') center / cover no-repeat; padding-block: 88px; }
+.brs-contracts { display: flex; flex-direction: column; gap: 24px; width: 100%; max-width: 980px; margin-inline: auto; }
+.brs-contracts article { max-width: none; align-items: flex-start; text-align: left; }
+.brs-contract-primary { padding: 48px; background: linear-gradient(125deg, #082254, #1d1d21); gap: 28px; }
+.brs-contract-primary > p { color: var(--gray-1_color); }
+.brs-contract-primary .brs-centered { align-self: flex-start; }
+.brs-contract-secondary { width: 86%; padding: 28px 32px; gap: 16px; }
+.brs-rate-list { display: grid; gap: 16px; }
+.brs-rate { display: grid; grid-template-columns: 64px minmax(0, 1fr) 124px; gap: 32px; align-items: center; padding: 32px; border: 1px solid #8f91a052; border-radius: 24px; background: linear-gradient(135deg, #1c4d8d30, transparent); }
+.brs-rate__level { font-size: 24px; font-weight: 600; color: var(--gray-1_color); }
+.brs-rate__copy { display: grid; gap: 12px; }
+.brs-rate__price { display: grid; gap: 8px; text-align: right; font-size: 32px; font-weight: 600; }
+.brs-rate__price span { font-size: 14px; font-weight: 400; color: var(--gray-1_color); }
+.brs-contact-layout { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 64px; align-items: start; }
+.brs-contact-page { padding-top: 32px; }
+.brs-contact-page .contacts__content { max-width: none; display: flex; flex-direction: column; align-items: flex-start; gap: 28px; }
+.brs-title--left { text-align: left; }
+.brs-contact-page .contacts__content > p { margin: 0; }
+.brs-enquiry-card { max-width: none; width: 100%; }
+.brs-legal-links { display: flex; flex-wrap: wrap; gap: 16px 24px; margin-top: 28px; font-size: 14px; line-height: 1.5; }
+.brs-legal-links a { color: var(--gray-1_color); text-decoration: underline; text-underline-offset: 4px; }
+.brs-legal-links span { color: var(--gray-2_color); }
+.brs-preview-notice { padding: 14px 20px; border: 1px solid var(--acc-2_color); border-radius: 12px; font-size: 16px; line-height: 1.4; background: #08225470; }
+.brs-related .solutions-item { gap: 28px; align-items: flex-start; text-align: left; justify-content: space-between; }
+.brs-related .solutions-item > span { font-size: 28px; color: var(--gray-1_color); }
+#tcell-s4hana-case, #enquiry, #contact-details, #privacy-and-consent { scroll-margin-top: 140px; }
+
+@media (max-width: 1024px) {
+    .brs-service-hero .container { padding-block: 140px 64px; }
+    .brs-step-flow--4, .brs-step-flow--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .brs-contact-layout { grid-template-columns: minmax(0, 1fr); gap: 48px; }
+    .brs-enquiry-card { max-width: 720px; }
+}
+@media (max-width: 600px) {
+    .brs-service-hero .container { padding-block: 128px 48px; }
+    .brs-service-hero .preview-portfolio__column { gap: 24px; }
+    .brs-grid--two, .brs-step-flow--4, .brs-step-flow--3 { grid-template-columns: minmax(0, 1fr); }
+    .brs-step-flow { gap: 16px; }
+    .brs-step-flow .solutions-item { flex-direction: row; align-items: center; padding: 24px; gap: 20px; }
+    .brs-step-flow .brs-step-number { font-size: 32px; }
+    .brs-proof-panel { padding: 24px; }
+    .brs-faq-item summary { padding: 24px; font-size: 16px; gap: 16px; }
+    .brs-faq-item > div { padding: 0 24px 24px; }
+    .brs-final-cta { padding-block: 64px; }
+    .brs-contract-primary, .brs-contract-secondary { padding: 28px 24px; width: 100%; }
+    .brs-contract-primary .button_v2 { padding-inline: 20px; text-align: center; }
+    .brs-rate { grid-template-columns: minmax(0, 1fr) auto; gap: 20px; padding: 24px; }
+    .brs-rate__level { grid-column: 1; }
+    .brs-rate__copy { grid-column: 1 / -1; grid-row: 2; }
+    .brs-rate__price { grid-column: 2; grid-row: 1; font-size: 28px; }
+    .brs-contact-page .contacts__content { gap: 24px; }
+    .brs-hero-proofs span { padding: 10px 14px; }
+}

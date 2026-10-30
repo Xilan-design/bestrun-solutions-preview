@@ -119,6 +119,11 @@ body { color: var(--white_color); }
 .brs-route h3 { width: 100%; max-width: none; font-size: 18px; line-height: 1.45; text-align: left; }
 .brs-route .brs-route-description { color: var(--gray-1_color); line-height: 1.6; }
 .brs-route .brs-route-direction { position: absolute; top: 32px; left: calc(50% + 48px); display: flex; width: 14px; height: 14px; transform: translate(-50%, -50%); background: #121212; color: var(--acc-1_color); opacity: calc(.35 + .65 * var(--route-progress)); pointer-events: none; }
+/* Homepage lifecycle: a symmetric band with each caption beneath its node. */
+.brs-route--centered .solutions-item { justify-items: center; text-align: center; }
+.brs-route--centered .brs-step-number { justify-self: center; }
+.brs-route--centered h3, .brs-route--centered .brs-route-description { width: 100%; margin-inline: auto; text-align: center; }
+.brs-route--centered .solutions-item::before, .brs-route--centered .solutions-item::after { left: calc(50% + 32px); right: -50%; }
 .brs-case { display: grid; grid-template-columns: minmax(0, .6fr) minmax(0, 1.4fr); align-items: center; gap: 48px; padding: 48px; border: 1px solid var(--gray-3_color); border-radius: 32px; background: radial-gradient(ellipse at 0 50%, #1c4d8d30, transparent 65%); }
 .brs-case__logo { display: flex; justify-content: center; }
 .brs-case__logo img { width: min(100%, 210px); height: auto; }
@@ -268,6 +273,11 @@ a:focus-visible, button:focus-visible, summary:focus-visible, .field:focus-visib
     .brs-route .solutions-item::after { transform: scaleY(var(--route-progress)); transform-origin: center top; }
     .brs-route .solutions-item:last-child { min-height: 64px; padding-bottom: 0; }
     .brs-route .brs-route-direction { left: 32px; top: calc(50% + 32px); transform: translate(-50%, -50%) rotate(90deg); }
+    .brs-route.brs-route--centered { max-width: 640px; }
+    .brs-route--centered .solutions-item { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto auto; gap: 16px; min-height: 0; padding-bottom: 88px; }
+    .brs-route--centered .brs-step-number, .brs-route--centered .brs-route-copy { grid-column: 1; grid-row: auto; }
+    .brs-route--centered .brs-route-copy { max-width: 460px; }
+    .brs-route--centered .solutions-item::before, .brs-route--centered .solutions-item::after { inset: auto auto 0 calc(50% - 1px); width: 2px; height: 56px; }
     #team .brs-competencies { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     #team .brs-competencies li:last-child:nth-child(odd) { grid-column: 1 / -1; }
     .brs-sap-icon { width: 64px; height: 64px; }

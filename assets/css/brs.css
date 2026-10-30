@@ -2,6 +2,7 @@
 :root {
     --brs-section-space: 64px;
     --brs-content-gap: 40px;
+    --brs-block-gap: 64px;
     --brs-group-gap: 24px;
     --brs-card-space: 32px;
 }
@@ -20,6 +21,8 @@ body { color: var(--white_color); }
 .brs-section { position: relative; padding-block: var(--brs-section-space); scroll-margin-top: 60px; }
 .brs-section__column { display: flex; flex-direction: column; gap: var(--brs-content-gap); }
 .brs-section-header { display: grid; justify-items: center; gap: var(--brs-group-gap); }
+/* Text keeps its compact rhythm; standalone content groups get more space. */
+.brs-section__column > :is(.brs-grid, .brs-metrics, .brs-step-flow, .brs-lifecycle, .brs-case, .brs-contracts, .brs-competencies, .brs-rate-list, .brs-faq, .brs-proof-panel, .contacts__grid) { margin-block-start: calc(var(--brs-block-gap) - var(--brs-content-gap)); }
 .brs-title { width: 100%; max-width: 940px; margin-inline: auto; align-self: center; text-align: center; text-wrap: balance; background: linear-gradient(180deg, #fff, #afb3c4); background-clip: text; -webkit-background-clip: text; color: transparent; }
 .brs-intro, .brs-copy { width: 100%; max-width: 740px; margin: 0 auto; color: var(--gray-1_color); text-align: center; }
 .brs-copy { display: grid; gap: var(--brs-group-gap); }
@@ -63,6 +66,7 @@ body { color: var(--white_color); }
 /* Text sections follow the homepage's centered, single-column composition. */
 .brs-editorial .brs-section__column { align-items: center; }
 .brs-editorial__body { display: grid; gap: 24px; width: 100%; max-width: 740px; min-width: 0; }
+.brs-editorial__body > .brs-competencies { margin-block-start: calc(var(--brs-block-gap) - 24px); }
 .brs-editorial__body > .brs-proof-panel { align-items: center; padding: 0; border: 0; background: none; text-align: center; }
 .brs-competencies { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 24px; width: 100%; }
 .brs-competencies li { display: flex; align-items: center; gap: 12px; min-width: 0; padding: 16px 0; border-bottom: 1px solid #afb3c421; color: var(--gray-1_color); font-size: 16px; line-height: 1.5; text-align: left; }
@@ -175,7 +179,7 @@ footer { padding: 24px 0 0; }
 .brs-legacy details { border-top: 1px solid var(--gray-3_color); }
 .brs-legacy summary { padding-block: 24px; cursor: pointer; color: var(--gray-1_color); font-size: 18px; }
 .brs-legacy .careers, .brs-legacy .blog { scroll-margin-top: 140px; }
-.brs-legacy .brs-title { margin-bottom: 40px; }
+.brs-legacy .brs-title { margin-bottom: var(--brs-block-gap); }
 .brs-news { max-width: 800px; gap: 24px; }
 
 /* Fixed navigation and visible focus remain shared across all seven pages. */
@@ -251,7 +255,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, .field:focus-visib
     .footer__nav { flex-direction: row; }
 }
 @media (max-width: 600px) {
-    :root { --brs-section-space: 48px; --brs-content-gap: 32px; --brs-card-space: 24px; }
+    :root { --brs-section-space: 48px; --brs-content-gap: 32px; --brs-block-gap: 48px; --brs-card-space: 24px; }
     .brs-title { text-wrap: pretty; }
     .preview__actions { flex-direction: column; width: 100%; max-width: 320px; }
     .brs-service-hero > .container { padding-block: 128px 48px; }

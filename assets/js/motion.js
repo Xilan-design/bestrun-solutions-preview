@@ -163,6 +163,36 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     listen(document, 'brs:services', context.services);
 
+    // One short response per pointer entry, using the existing brand icons.
+    const iconMoves = [
+      [{ rotation: -7 }, { rotation: 7 }, { rotation: -3 }],
+      [{ y: -4, scale: 1.08 }, { y: 1, scale: .98 }],
+      [{ rotationY: 22, scale: 1.06 }, { rotationY: -12 }],
+      [{ x: -5 }, { x: 6, y: -2 }, { x: 2, y: 0 }],
+      [{ rotation: -5, y: -2 }, { rotation: 5, y: -2 }],
+      [{ scaleY: .9, y: 2 }, { scaleY: 1.07, y: -2 }],
+      [{ y: -5, rotation: -4 }, { y: -2, rotation: 3 }],
+      [{ rotationY: -14, scale: 1.06 }, { rotationY: 10 }],
+    ];
+    document.querySelectorAll('.brs-solutions-grid > .brs-solution').forEach((card, index) => {
+      const icon = card.querySelector('img');
+      context.add(`solutionEnter${index}`, event => {
+        if (event.pointerType !== 'mouse') return;
+        gsap.killTweensOf(icon);
+        const sequence = gsap.timeline({ defaults: { duration: .16, ease: 'power2.inOut' } });
+        sequence.set(icon, { x: 0, y: 0, rotation: 0, rotationY: 0, scale: 1 });
+        iconMoves[index % iconMoves.length].forEach(move => sequence.to(icon, move));
+        sequence.to(icon, { x: 0, y: 0, rotation: 0, rotationY: 0, scale: 1, duration: .24, ease: 'power2.out', clearProps: 'transform' });
+      });
+      context.add(`solutionLeave${index}`, event => {
+        if (event.pointerType !== 'mouse') return;
+        gsap.killTweensOf(icon);
+        gsap.to(icon, { x: 0, y: 0, rotation: 0, rotationY: 0, scale: 1, duration: .2, ease: 'power2.out', clearProps: 'transform' });
+      });
+      listen(card, 'pointerenter', context[`solutionEnter${index}`]);
+      listen(card, 'pointerleave', context[`solutionLeave${index}`]);
+    });
+
     // Native details semantics are kept; height changes only for this user action.
     document.querySelectorAll('.brs-faq-item').forEach(details => {
       const summary = details.querySelector('summary');
@@ -202,6 +232,9 @@ document.addEventListener('DOMContentLoaded', () => {
       cancelIntro();
       listeners.forEach(remove => remove());
       faqStates.forEach((open, details) => { details.open = open; });
+      // Interrupted hover tweens can save intermediate transforms in their
+      // context. Restore the icon's CSS state after the context reverts them.
+      document.querySelectorAll('.brs-solutions-grid img').forEach(icon => icon.style.removeProperty('transform'));
     };
   }, document.body);
 

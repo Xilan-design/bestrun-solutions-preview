@@ -208,6 +208,19 @@ a:focus-visible, button:focus-visible, summary:focus-visible, .field:focus-visib
 .brs-solution:hover, .brs-technology:hover, .brs-industry:hover { background: none; }
 .brs-solution:hover::before, .brs-technology:hover::before, .brs-industry:hover::before { background: linear-gradient(360deg, #2d2d2d00, #8f91a052); }
 
+/* Enterprise solutions share the quiet, open layout of the experience metrics. */
+.brs-solutions-grid { --solution-columns: 4; gap: 0; }
+.brs-solutions-grid > .brs-solution { --line-position: 0%; justify-items: center; padding: 40px 24px; border: 0; border-radius: 0; background: none; text-align: center; }
+.brs-solutions-grid > .brs-solution:nth-child(4n + 2) { --line-position: 33.333333%; }
+.brs-solutions-grid > .brs-solution:nth-child(4n + 3) { --line-position: 66.666667%; }
+.brs-solutions-grid > .brs-solution:nth-child(4n) { --line-position: 100%; }
+.brs-solutions-grid .brs-solution h3, .brs-solutions-grid .brs-solution p { width: 100%; max-width: 270px; margin-inline: auto; text-align: center; }
+.brs-solutions-grid .brs-solution img { align-self: center; justify-self: center; transform-origin: center; }
+.brs-solutions-grid > .brs-solution::before { content: ''; display: block; position: absolute; inset: 24px 0 24px auto; width: 1px; padding: 0; border: 0; border-radius: 0; background: linear-gradient(180deg, transparent, #8f91a048 50%, transparent); -webkit-mask: none; mask: none; pointer-events: none; }
+.brs-solutions-grid > .brs-solution:nth-child(4n)::before { display: none; }
+.brs-solutions-grid > .brs-solution::after { content: ''; display: none; position: absolute; inset: 0 0 auto; height: 1px; background: linear-gradient(90deg, transparent, #8f91a048 50%, transparent); background-size: calc(var(--solution-columns) * 100%) 100%; background-position: var(--line-position) 0; pointer-events: none; }
+.brs-solutions-grid > .brs-solution:nth-child(n + 5)::after { display: block; }
+
 /* About is the explicitly requested horizontal exception to centered sections. */
 @media (min-width: 1025px) {
     #about .brs-section__column { display: grid; grid-template-columns: minmax(max-content, .85fr) minmax(0, 1.15fr); gap: 64px; align-items: start; }
@@ -222,6 +235,12 @@ a:focus-visible, button:focus-visible, summary:focus-visible, .field:focus-visib
     .header__logo img { max-width: 195px; }
 }
 @media (max-width: 1024px) {
+    .brs-solutions-grid { --solution-columns: 2; }
+    .brs-solutions-grid > .brs-solution:nth-child(n) { --line-position: 0%; }
+    .brs-solutions-grid > .brs-solution:nth-child(odd)::before { display: block; }
+    .brs-solutions-grid > .brs-solution:nth-child(even) { --line-position: 100%; }
+    .brs-solutions-grid > .brs-solution:nth-child(even)::before { display: none; }
+    .brs-solutions-grid > .brs-solution:nth-child(n + 3)::after { display: block; }
     .brs-grid--four, .brs-grid--three { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     #sap-services .brs-grid { grid-template-columns: minmax(0, 1fr); }
     #sap-services .brs-sap-card .service-item__text { max-width: 680px; }
@@ -255,6 +274,10 @@ a:focus-visible, button:focus-visible, summary:focus-visible, .field:focus-visib
     .footer__nav { flex-direction: row; }
 }
 @media (max-width: 600px) {
+    .brs-solutions-grid { --solution-columns: 1; }
+    .brs-solutions-grid > .brs-solution { align-items: center; padding: 32px 16px; }
+    .brs-solutions-grid > .brs-solution:nth-child(n)::before { display: none; }
+    .brs-solutions-grid > .brs-solution:nth-child(n + 2)::after { display: block; }
     :root { --brs-section-space: 48px; --brs-content-gap: 32px; --brs-block-gap: 48px; --brs-card-space: 24px; }
     .brs-title { text-wrap: pretty; }
     .preview__actions { flex-direction: column; width: 100%; max-width: 320px; }

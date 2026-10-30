@@ -81,12 +81,12 @@ body { color: var(--white_color); }
 .brs-grid--two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .brs-grid > * { min-width: 0; max-width: none; }
 .brs-solution, .brs-technology, .brs-service { display: grid; grid-template-rows: subgrid; align-items: start; gap: 24px; text-align: left; }
-.brs-solution { grid-row: span 3; padding: 32px 24px; }
+.brs-solution { grid-row: span 3; row-gap: 12px; padding: 32px 24px; }
 .brs-technology { grid-row: span 2; padding: 32px 24px; }
 .brs-service { grid-row: span 2; padding: var(--brs-card-space); height: 100%; }
 .brs-solution h3, .brs-technology h3, .brs-service h3 { margin: 0; text-align: left; text-wrap: pretty; }
 .brs-service .service-item__text { text-align: left; }
-.brs-solution img { align-self: start; }
+.brs-solution img { align-self: start; margin-bottom: 12px; }
 .brs-tech-list { display: grid; gap: 12px; width: 100%; color: var(--gray-1_color); }
 .brs-tech-list li + li { padding-top: 12px; border-top: 1px solid #afb3c421; }
 .brs-sap-card { grid-row: span 4; }
@@ -264,6 +264,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, .field:focus-visib
     .brs-jump-links a { justify-content: space-between; }
     .brs-grid--four, .brs-grid--three, .brs-grid--two { grid-template-columns: minmax(0, 1fr); }
     .brs-solution, .brs-technology, .brs-service { display: flex; flex-direction: column; grid-row: auto; gap: 24px; padding: 24px; }
+    .brs-solution { row-gap: 12px; }
     #sap-services .brs-sap-card .button_v2 { width: 100%; }
     .brs-metrics { grid-template-columns: minmax(0, 1fr); gap: 0; }
     .brs-metrics .teams-item::before { display: none; }

@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const listeners = [];
     let cancelIntro = () => {};
     const faqStates = new Map();
+    const sapResets = [];
     const listen = (node, event, handler) => {
       node.addEventListener(event, handler);
       listeners.push(() => node.removeEventListener(event, handler));
@@ -193,6 +194,58 @@ document.addEventListener('DOMContentLoaded', () => {
       listen(card, 'pointerleave', context[`solutionLeave${index}`]);
     });
 
+    // Larger SAP icons animate their individual SVG parts, not the whole image.
+    document.querySelectorAll('#sap-services .brs-sap-card').forEach((card, index) => {
+      const icon = card.querySelector('[data-sap-icon]');
+      const parts = [...icon.querySelectorAll('[data-sap-part]')];
+      const accents = [...icon.querySelectorAll('.brs-sap-accent')];
+      const part = name => icon.querySelectorAll(`[data-sap-part="${name}"]`);
+      let sequence;
+      const reset = () => {
+        sequence?.kill();
+        gsap.killTweensOf(parts);
+        gsap.set(parts, { clearProps: 'all' });
+        parts.forEach(node => { node.removeAttribute('transform'); node.removeAttribute('data-svg-origin'); });
+      };
+      sapResets.push(reset);
+      context.add(`sapEnter${index}`, event => {
+        if (event.type === 'pointerenter' && event.pointerType !== 'mouse') return;
+        reset();
+        sequence = gsap.timeline({ defaults: { ease: 'power2.inOut' }, onComplete: reset });
+        if (icon.dataset.sapIcon === 'implementation') {
+          sequence.to(part('hand'), { rotation: 360, svgOrigin: '24 13', duration: .95 }, 0)
+            .to(part('node'), { scale: 1.3, transformOrigin: '50% 50%', duration: .24, stagger: .14, repeat: 1, yoyo: true }, .2)
+            .fromTo(part('signal'), { strokeDashoffset: 1, opacity: 0 }, { strokeDashoffset: 0, opacity: 1, duration: .7 }, .1)
+            .to(part('signal'), { opacity: 0, duration: .25 }, .85);
+        } else if (icon.dataset.sapIcon === 'support') {
+          sequence.to(part('cap'), { y: -2.5, duration: .35, repeat: 1, yoyo: true }, 0)
+            .to(part('layer'), { y: 2, duration: .28, stagger: .13, repeat: 1, yoyo: true }, .12)
+            .fromTo(part('scan'), { y: 0, opacity: 0 }, { y: 22, opacity: .95, duration: .7, ease: 'none' }, .1)
+            .to(part('scan'), { opacity: 0, duration: .25 }, .8);
+        } else {
+          sequence.to(part('back'), { x: 4, y: -2, duration: .3 }, 0)
+            .to(part('back'), { x: 0, y: 0, duration: .4 }, .3)
+            .to(part('front'), { x: -3, y: 1, duration: .3 }, .06)
+            .to(part('front'), { x: 0, y: 0, duration: .4 }, .36)
+            .fromTo(part('halo'), { scale: .75, opacity: 0, svgOrigin: '18 22' }, { scale: 1.15, opacity: .9, duration: .5 }, .1)
+            .to(part('halo'), { opacity: 0, duration: .3 }, .65);
+        }
+      });
+      context.add(`sapLeave${index}`, event => {
+        if (event.type === 'pointerleave' && event.pointerType !== 'mouse') return;
+        if (event.type === 'focusout' && card.contains(event.relatedTarget)) return;
+        if (!parts.some(node => gsap.isTweening(node))) { reset(); return; }
+        sequence?.kill();
+        gsap.killTweensOf(parts);
+        gsap.to(parts, { x: 0, y: 0, rotation: '0_short', scale: 1, duration: .24, ease: 'power2.out', onComplete: reset });
+        gsap.to(accents, { opacity: 0, duration: .18 });
+      });
+      listen(card, 'pointerenter', context[`sapEnter${index}`]);
+      listen(card, 'pointerleave', context[`sapLeave${index}`]);
+      listen(card, 'focusin', context[`sapEnter${index}`]);
+      listen(card, 'focusout', context[`sapLeave${index}`]);
+    });
+
     // Native details semantics are kept; height changes only for this user action.
     document.querySelectorAll('.brs-faq-item').forEach(details => {
       const summary = details.querySelector('summary');
@@ -235,6 +288,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Interrupted hover tweens can save intermediate transforms in their
       // context. Restore the icon's CSS state after the context reverts them.
       document.querySelectorAll('.brs-solutions-grid img').forEach(icon => icon.style.removeProperty('transform'));
+      sapResets.forEach(reset => reset());
     };
   }, document.body);
 

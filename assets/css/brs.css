@@ -90,7 +90,9 @@ body { color: var(--white_color); }
 .brs-tech-list { display: grid; gap: 12px; width: 100%; color: var(--gray-1_color); }
 .brs-tech-list li + li { padding-top: 12px; border-top: 1px solid #afb3c421; }
 .brs-sap-card { grid-row: span 4; }
-.brs-sap-icon { opacity: .85; filter: grayscale(1); }
+.brs-sap-icon { display: block; width: 72px; height: 72px; overflow: visible; opacity: 1; }
+.brs-sap-icon .brs-sap-accent { opacity: 0; stroke: var(--acc-1_color); }
+.brs-sap-icon [data-sap-part="signal"] { stroke-dasharray: 1; stroke-dashoffset: 1; }
 .brs-sap-card .button_v2 { align-self: end; width: 100%; padding-inline: 16px; text-align: center; }
 .brs-industry { flex-direction: row; align-items: center; gap: 20px; padding: 24px; text-align: left; }
 .brs-industry img { width: 36px; height: 36px; filter: grayscale(1); }
@@ -235,6 +237,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, .field:focus-visib
     .header__logo img { max-width: 195px; }
 }
 @media (max-width: 1024px) {
+    .brs-sap-icon { width: 64px; height: 64px; }
     .brs-solutions-grid { --solution-columns: 2; }
     .brs-solutions-grid > .brs-solution:nth-child(n) { --line-position: 0%; }
     .brs-solutions-grid > .brs-solution:nth-child(odd)::before { display: block; }

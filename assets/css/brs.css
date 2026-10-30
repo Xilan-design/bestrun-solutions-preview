@@ -298,6 +298,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, .field:focus-visib
     #sap-services .brs-sap-card .button_v2 { justify-self: start; width: fit-content; }
     #support-levels .brs-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .brs-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 0; }
+    .brs-metrics .teams-item { width: auto; margin-bottom: 0; }
     .brs-metrics .teams-item:nth-child(even)::before { display: none; }
     .brs-service-hero > .container { padding-block: 144px 64px; }
     .brs-contact-layout { grid-template-columns: minmax(0, 1fr); gap: 40px; }
@@ -315,40 +316,105 @@ a:focus-visible, button:focus-visible, summary:focus-visible, .field:focus-visib
     .brs-faq-item > div { padding-right: 32px; }
     .footer__nav { flex-direction: row; }
 }
+@media (min-width: 601px) and (max-width: 768px) {
+    :root { --brs-section-space: 40px; --brs-content-gap: 24px; --brs-block-gap: 40px; --brs-group-gap: 20px; }
+    .preview--corporate > .container { padding-block: 128px 48px; }
+    .brs-service-hero > .container { padding-block: 128px 40px; }
+    .brs-route--centered .solutions-item { gap: 12px; padding-bottom: 56px; }
+    .brs-route--centered .solutions-item::before, .brs-route--centered .solutions-item::after { height: 32px; }
+}
 @media (max-width: 600px) {
+    :root { --brs-section-space: 32px; --brs-content-gap: 20px; --brs-block-gap: 32px; --brs-group-gap: 16px; --brs-card-space: 20px; }
+    .headline_h1 { font-size: clamp(32px, 9.2vw, 36px); }
+    .headline_h2 { font-size: clamp(26px, 7.2vw, 30px); line-height: 1.22; }
+    main .text_18 { font-size: 16px; line-height: 1.55; }
+    main > section + .brs-section { border-top: 1px solid #afb3c419; }
+    .brs-section, .brs-anchor, #tcell-s4hana-case, #enquiry, #contact-details, #privacy-and-consent, .brs-legacy .careers, .brs-legacy .blog { scroll-margin-top: 96px; }
     .header__row, .mobile-nav__header { gap: 8px; }
+    .header__row { padding-block: 16px; }
     .header__logo img { width: 140px; }
-    .brs-language a { min-height: 40px; }
+    .brs-language a { min-height: 44px; }
+    .mobile-nav__column { padding: 20px 16px 24px; gap: 20px; }
+    .mobile__nav { gap: 0; }
+    .mobile__nav li + li { border-top: 1px solid #afb3c414; }
+    .mobile__nav li a { display: flex; justify-content: center; align-items: center; min-height: 44px; padding: 10px 8px; line-height: 1.4; }
+    main .button_v1, main .button_v2 { min-height: 48px; padding: 14px 16px; }
     .brs-competencies, #team .brs-competencies { grid-template-columns: minmax(0, 1fr); gap: 12px; }
-    .brs-competencies li { min-height: 72px; padding: 20px; }
+    .brs-competencies li { min-height: 56px; padding: 14px 16px; gap: 14px; }
     .brs-solutions-grid { --solution-columns: 1; }
-    .brs-solutions-grid > .brs-solution { align-items: center; padding: 32px 16px; }
+    .brs-solutions-grid > .brs-solution { align-items: center; padding: 24px 8px; }
+    .brs-solutions-grid .brs-solution img { width: 40px; height: 40px; margin-bottom: 0; }
+    .brs-solutions-grid .brs-solution h3, .brs-solutions-grid .brs-solution p { max-width: none; }
     .brs-solutions-grid > .brs-solution:nth-child(n)::before { display: none; }
     .brs-solutions-grid > .brs-solution:nth-child(n + 2)::after { display: block; }
-    :root { --brs-section-space: 48px; --brs-content-gap: 32px; --brs-block-gap: 48px; --brs-card-space: 24px; }
     .brs-title { text-wrap: pretty; }
+    .brs-editorial__body { gap: 16px; }
+    .brs-editorial__body > .brs-competencies { margin-block-start: calc(var(--brs-block-gap) - 16px); }
+    .preview--corporate > .container { padding-block: 120px 40px; }
+    .preview--corporate .preview__title { margin-bottom: 16px; }
     .preview__actions { flex-direction: column; width: 100%; max-width: 320px; }
-    .brs-service-hero > .container { padding-block: 128px 48px; }
+    .preview--corporate .preview__actions { margin-top: 24px; gap: 12px; }
+    .brs-service-hero > .container { padding-block: 112px 32px; }
+    .brs-service-hero .preview-portfolio__column { gap: 16px; }
+    .brs-service-hero .breadcrumbs { margin-bottom: 4px; }
+    .brs-hero-actions { gap: 20px; margin-top: 4px; }
+    .brs-hero-proofs { gap: 12px 20px; }
+    .brs-grid { gap: 16px; }
     .brs-grid--four, .brs-grid--three, .brs-grid--two { grid-template-columns: minmax(0, 1fr); }
-    .brs-solution, .brs-technology, .brs-service { display: flex; flex-direction: column; grid-row: auto; gap: 24px; padding: 24px; }
+    .brs-solution, .brs-technology, .brs-service { display: flex; flex-direction: column; grid-row: auto; gap: 16px; padding: 20px; }
     .brs-solution { row-gap: 12px; }
+    .brs-solutions-grid { gap: 0; }
+    .brs-tech-list { gap: 8px; }
+    .brs-tech-list li + li { padding-top: 8px; }
+    .brs-sap-icon { width: 56px; height: 56px; }
+    .brs-sap-card h3 { font-size: 22px; }
     #sap-services .brs-sap-card .button_v2 { width: 100%; }
-    .brs-metrics { grid-template-columns: minmax(0, 1fr); gap: 0; }
-    .brs-metrics .teams-item::before { display: none; }
+    #industries .brs-grid { gap: 10px; }
+    .brs-industry { gap: 12px; min-height: 56px; padding: 14px 16px; border-radius: 16px; }
+    .brs-industry::before { border-radius: 16px; }
+    .brs-industry img { width: 28px; height: 28px; }
+    .brs-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; }
+    .brs-metrics .teams-item { width: auto; margin-bottom: 0; padding: 16px 10px; gap: 8px; }
+    .brs-metrics .teams-item__title { font-size: 32px; }
+    .brs-metrics .teams-item__text { font-size: 14px; line-height: 1.45; }
+    .brs-metrics .teams-item::before { display: none; inset: 12px 0 12px auto; width: 1px; padding: 0; background: linear-gradient(transparent, #2d2d2d, transparent); -webkit-mask: none; mask: none; }
+    .brs-metrics .teams-item:nth-child(odd)::before { display: block; }
+    .brs-metrics .teams-item:nth-child(n + 3)::after { content: ''; position: absolute; inset: 0 10px auto; height: 1px; background: linear-gradient(90deg, transparent, #2d2d2d, transparent); }
+    .brs-route--centered .solutions-item { gap: 10px; padding-bottom: 40px; }
+    .brs-route .brs-step-number { width: 48px; height: 48px; font-size: 22px; }
+    .brs-route h3 { font-size: 16px; line-height: 1.45; }
+    .brs-route .brs-route-description { line-height: 1.55; }
+    .brs-route--centered .solutions-item::before, .brs-route--centered .solutions-item::after { height: 20px; }
     .brs-competencies, .brs-editorial .brs-competencies { grid-template-columns: minmax(0, 1fr); }
-    .brs-proof-panel { padding: 24px; }
-    .brs-contract-primary { padding: 32px 24px; }
-    .brs-contract-secondary { width: 100%; padding: 8px 24px; }
-    .brs-rate { grid-template-columns: minmax(0, 1fr) auto; gap: 16px; padding: 24px; }
+    .brs-case { padding: 20px; gap: 20px; border-radius: 24px; }
+    .brs-case__body { gap: 16px; }
+    .brs-case__logo img { max-width: 140px; }
+    .brs-proof-panel { padding: 20px; gap: 16px; border-radius: 20px; }
+    .brs-contracts { gap: 16px; }
+    .brs-contract-primary { padding: 20px; gap: 16px; }
+    .brs-contract-secondary { width: 100%; padding: 8px 16px; }
+    .brs-rate { grid-template-columns: minmax(0, 1fr) auto; gap: 12px; padding: 20px; }
+    .brs-rate__copy { gap: 8px; }
     .brs-rate__level { grid-column: 1; }
     .brs-rate__price { grid-column: 2; grid-row: 1; font-size: 28px; }
     .brs-rate__copy { grid-column: 1 / -1; grid-row: 2; }
-    .brs-faq-item summary { gap: 24px; font-size: 16px; }
-    .brs-final-cta, .brs-integrators { padding-block: 64px; }
+    .brs-faq-item summary { gap: 20px; padding-block: 16px; min-height: 56px; font-size: 16px; }
+    .brs-faq-item > div { padding: 0 28px 16px 0; }
+    .brs-final-cta { padding-block: 40px; }
+    .brs-final-cta .brs-section__column { gap: 24px; }
+    .brs-integrators { padding-block: 32px; }
+    .brs-contact-layout, .contacts.brs-section .contacts__grid { gap: 24px; }
+    .contacts.brs-section .contacts__content { gap: 16px; }
+    .contacts.brs-section .card { padding: 20px; border-radius: 24px; }
+    .contacts .card__title { font-size: 22px; margin-bottom: 20px; }
+    .contact-form .field { min-height: 52px; padding: 14px 16px; }
+    .contact-form textarea.field { height: 104px; }
+    .contact-form .divider { margin-block: 20px; }
     .contact-form .grid { grid-template-columns: minmax(0, 1fr); }
-    .brs-related .solutions-item { flex-direction: row; align-items: center; min-height: 112px; gap: 24px; }
-    .brs-related h3 { max-width: 250px; }
+    .brs-related .solutions-item { flex-direction: row; align-items: center; min-height: 80px; padding: 20px; gap: 16px; }
+    .brs-related h3 { max-width: none; font-size: 20px; }
     .brs-related .solutions-item > span { font-size: 24px; }
+    .footer__column { padding-block: 24px; }
     .footer__row { flex-direction: column; }
     .footer__nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 24px; }
     .footer__text { margin-bottom: 24px; }

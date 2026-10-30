@@ -117,6 +117,21 @@ body { color: var(--white_color); }
 .brs-step-flow .solutions-item::after, .brs-lifecycle .solutions-item::after { content: ''; position: absolute; top: -4px; left: 0; width: 7px; height: 7px; border-radius: 50%; background: var(--acc-1_color); }
 .brs-step-number { color: var(--gray-2_color); font-size: 32px; font-weight: 400; line-height: 1.2; }
 .brs-step-flow h3, .brs-lifecycle h3 { max-width: 240px; line-height: 1.5; text-align: left; }
+
+/* Lifecycle is a finite route: connectors exist only between numbered nodes. */
+#lifecycle .brs-lifecycle { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px 32px; padding: 0; }
+#lifecycle .solutions-item { --route-progress: 1; display: grid; grid-template-rows: subgrid; grid-row: span 3; gap: 20px; padding: 0; border: 0; align-items: start; }
+#lifecycle .solutions-item::before, #lifecycle .solutions-item::after { content: ''; display: block; position: absolute; inset: 31px -32px auto 64px; width: auto; height: 2px; padding: 0; border: 0; border-radius: 0; -webkit-mask: none; mask: none; pointer-events: none; }
+#lifecycle .solutions-item::before { background: var(--gray-3_color); }
+#lifecycle .solutions-item::after { background: linear-gradient(90deg, #2e87ff, #1c4d8d); transform: scaleX(var(--route-progress)); transform-origin: left center; }
+#lifecycle .solutions-item:last-child::before, #lifecycle .solutions-item:last-child::after { display: none; }
+#lifecycle .brs-step-number { display: flex; align-items: center; justify-content: center; width: 64px; height: 64px; border: 1px solid #2e87ff80; border-radius: 50%; background: #141d2a; color: var(--white_color); font-size: 28px; font-weight: 500; letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
+#lifecycle [data-route-state="pending"] .brs-step-number { border-color: var(--gray-3_color); color: var(--gray-2_color); background: #121212; }
+#lifecycle [data-route-state="active"] .brs-step-number { box-shadow: 0 0 0 6px #2e87ff14; }
+#lifecycle .solutions-item:last-child .brs-step-number { box-shadow: 0 0 0 5px #2e87ff0d; }
+#lifecycle h3 { width: 100%; max-width: none; font-size: 18px; line-height: 1.45; }
+#lifecycle .brs-route-description { color: var(--gray-1_color); line-height: 1.6; }
+#lifecycle .brs-route-direction { position: absolute; top: 32px; left: calc(50% + 48px); display: flex; width: 14px; height: 14px; transform: translate(-50%, -50%); background: #121212; color: var(--acc-1_color); opacity: calc(.35 + .65 * var(--route-progress)); pointer-events: none; }
 .brs-case { display: grid; grid-template-columns: minmax(0, .6fr) minmax(0, 1.4fr); align-items: center; gap: 48px; padding: 48px; border: 1px solid var(--gray-3_color); border-radius: 32px; background: radial-gradient(ellipse at 0 50%, #1c4d8d30, transparent 65%); }
 .brs-case__logo { display: flex; justify-content: center; }
 .brs-case__logo img { width: min(100%, 210px); height: auto; }
@@ -248,6 +263,14 @@ a:focus-visible, button:focus-visible, summary:focus-visible, .field:focus-visib
     .header__logo img { max-width: 195px; }
 }
 @media (max-width: 1024px) {
+    #lifecycle .brs-lifecycle { display: flex; flex-direction: column; gap: 0; width: 100%; max-width: 840px; margin-inline: auto; padding: 0; }
+    #lifecycle .solutions-item { grid-template-columns: 64px minmax(0, 1fr); grid-template-rows: auto auto; grid-row: auto; gap: 12px 28px; min-height: 156px; padding: 0 0 40px; }
+    #lifecycle .brs-step-number { grid-column: 1; grid-row: 1 / span 2; }
+    #lifecycle .brs-route-copy { grid-column: 2; }
+    #lifecycle .solutions-item::before, #lifecycle .solutions-item::after { inset: 64px auto 0 31px; width: 2px; height: auto; }
+    #lifecycle .solutions-item::after { transform: scaleY(var(--route-progress)); transform-origin: center top; }
+    #lifecycle .solutions-item:last-child { min-height: 64px; padding-bottom: 0; }
+    #lifecycle .brs-route-direction { left: 32px; top: calc(50% + 32px); transform: translate(-50%, -50%) rotate(90deg); }
     #team .brs-competencies { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     #team .brs-competencies li:last-child:nth-child(odd) { grid-column: 1 / -1; }
     .brs-sap-icon { width: 64px; height: 64px; }

@@ -74,6 +74,13 @@ body { color: var(--white_color); }
 .brs-editorial .brs-competencies { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .brs-editorial .brs-competencies li:last-child:nth-child(odd) { grid-column: 1 / -1; }
 
+/* Team: editorial introduction above a clearly separate capability grid. */
+#team .brs-editorial__body { max-width: 740px; }
+#team .brs-competencies { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+#team .brs-competencies li { gap: 18px; min-height: 88px; padding: 20px 24px; border: 1px solid #1c4d8d55; border-radius: 12px; background: linear-gradient(110deg, #1c4d8d1f, #1c4d8d05); color: var(--white_color); font-weight: 500; }
+#team .brs-competencies li::before { flex-basis: 6px; width: 6px; height: 6px; box-shadow: 0 0 0 6px #2e87ff14; }
+#team .brs-competencies li:last-child:nth-child(odd) { grid-column: auto; }
+
 /* Shared card tracks align titles, descriptions and actions within every row. */
 .brs-grid { display: grid; gap: 24px; align-items: stretch; }
 .brs-grid--four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
@@ -223,11 +230,15 @@ a:focus-visible, button:focus-visible, summary:focus-visible, .field:focus-visib
 .brs-solutions-grid > .brs-solution::after { content: ''; display: none; position: absolute; inset: 0 0 auto; height: 1px; background: linear-gradient(90deg, transparent, #8f91a048 50%, transparent); background-size: calc(var(--solution-columns) * 100%) 100%; background-position: var(--line-position) 0; pointer-events: none; }
 .brs-solutions-grid > .brs-solution:nth-child(n + 5)::after { display: block; }
 
-/* About is the explicitly requested horizontal exception to centered sections. */
+/* About and Team use the requested horizontal introductions on desktop. */
 @media (min-width: 1025px) {
     #about .brs-section__column { display: grid; grid-template-columns: minmax(max-content, .85fr) minmax(0, 1.15fr); gap: 64px; align-items: start; }
     #about .brs-title { max-width: 440px; margin: 0; align-self: start; text-align: left; }
     #about .brs-copy { margin: 0; text-align: left; }
+    #team .brs-section__column { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); column-gap: 64px; align-items: start; }
+    #team .brs-title { max-width: 440px; margin: 0; align-self: start; text-align: left; }
+    #team .brs-editorial__body, #team .brs-copy { max-width: none; margin: 0; text-align: left; }
+    #team .brs-competencies { grid-column: 1 / -1; }
 }
 @media (max-width: 1320px) {
     .header__row > nav, .header__row .header__contact { display: none; }
@@ -237,6 +248,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible, .field:focus-visib
     .header__logo img { max-width: 195px; }
 }
 @media (max-width: 1024px) {
+    #team .brs-competencies { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    #team .brs-competencies li:last-child:nth-child(odd) { grid-column: 1 / -1; }
     .brs-sap-icon { width: 64px; height: 64px; }
     .brs-solutions-grid { --solution-columns: 2; }
     .brs-solutions-grid > .brs-solution:nth-child(n) { --line-position: 0%; }
@@ -277,6 +290,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible, .field:focus-visib
     .footer__nav { flex-direction: row; }
 }
 @media (max-width: 600px) {
+    #team .brs-competencies { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+    #team .brs-competencies li { min-height: 72px; padding: 20px; }
     .brs-solutions-grid { --solution-columns: 1; }
     .brs-solutions-grid > .brs-solution { align-items: center; padding: 32px 16px; }
     .brs-solutions-grid > .brs-solution:nth-child(n)::before { display: none; }

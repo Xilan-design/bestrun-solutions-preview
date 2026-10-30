@@ -9,6 +9,38 @@ document.addEventListener('DOMContentLoaded', () => {
   updateVideoMotion();
   reducedMotion.addEventListener('change', updateVideoMotion);
 
+  const metrics = [...document.querySelectorAll('#experience .brs-metrics > .teams-item')];
+  let metricObserver;
+  const showMetricsImmediately = () => {
+    metricObserver?.disconnect();
+    metrics.forEach(metric => {
+      metric.classList.remove('brs-metric-waiting', 'brs-metric-revealing');
+      metric.style.removeProperty('--brs-metric-delay');
+    });
+  };
+  if (metrics.length && !reducedMotion.matches && 'IntersectionObserver' in window) {
+    metricObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const metric = entry.target;
+        metricObserver.unobserve(metric);
+        metric.classList.replace('brs-metric-waiting', 'brs-metric-revealing');
+        metric.addEventListener('animationend', () => {
+          metric.classList.remove('brs-metric-revealing');
+          metric.style.removeProperty('--brs-metric-delay');
+        }, { once: true });
+      });
+    }, { threshold: .15, rootMargin: '0px 0px -24px 0px' });
+    metrics.forEach((metric, index) => {
+      metric.style.setProperty('--brs-metric-delay', `${index * 90}ms`);
+      metric.classList.add('brs-metric-waiting');
+      metricObserver.observe(metric);
+    });
+    reducedMotion.addEventListener('change', () => {
+      if (reducedMotion.matches) showMetricsImmediately();
+    });
+  }
+
   const nav = document.querySelector('.mobile-nav');
   const openButton = document.querySelector('.header .header__burger');
   const closeButton = nav?.querySelector('.header__burger');

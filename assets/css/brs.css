@@ -90,6 +90,12 @@ body { color: var(--white_color); }
 .brs-metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .brs-metrics .teams-item { max-width: none; gap: 12px; }
 .brs-metrics .teams-item__text { max-width: 220px; margin-inline: auto; }
+.brs-metrics .brs-metric-waiting { opacity: 0; transform: translateY(18px); }
+.brs-metrics .brs-metric-revealing { animation: brs-metric-appear 650ms cubic-bezier(.22, 1, .36, 1) var(--brs-metric-delay, 0ms) both; }
+@keyframes brs-metric-appear {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 
 /* Numbers are reserved for real delivery sequences. */
 .brs-step-flow, .brs-lifecycle { display: grid; gap: 24px 0; list-style: none; }
@@ -284,6 +290,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, .field:focus-visib
     .footer__text { margin-bottom: 24px; }
 }
 @media (prefers-reduced-motion: reduce) {
+    .brs-metrics .brs-metric-waiting, .brs-metrics .brs-metric-revealing { opacity: 1; transform: none; animation: none; }
     html, body { scroll-behavior: auto; }
     .preview--corporate video { display: none; }
     .mobile-nav, .brs-related .solutions-item { transition: none; }

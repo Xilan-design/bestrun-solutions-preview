@@ -200,6 +200,12 @@ a:focus-visible, button:focus-visible, summary:focus-visible, .field:focus-visib
 .brs-solution:hover, .brs-technology:hover, .brs-industry:hover { background: none; }
 .brs-solution:hover::before, .brs-technology:hover::before, .brs-industry:hover::before { background: linear-gradient(360deg, #2d2d2d00, #8f91a052); }
 
+/* About is the explicitly requested horizontal exception to centered sections. */
+@media (min-width: 1025px) {
+    #about .brs-section__column { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 64px; align-items: start; }
+    #about .brs-title { max-width: 440px; margin: 0; align-self: start; text-align: left; }
+    #about .brs-copy { margin: 0; text-align: left; }
+}
 @media (max-width: 1320px) {
     .header__row > nav, .header__row .header__contact { display: none; }
     .header__burger { display: flex; width: 44px; height: 44px; }

@@ -50,7 +50,7 @@ body { color: var(--white_color); }
 .brs-service-hero h1 { max-width: 940px; text-wrap: balance; }
 .brs-service-hero p { max-width: 720px; }
 .brs-service-hero .brs-centered { justify-self: start; align-self: start; margin-top: 8px; }
-.brs-service-hero .breadcrumbs { display: inline-flex; align-items: center; gap: 8px; padding: 0; margin: 0 0 8px; font-size: 14px; color: var(--gray-1_color); }
+.brs-service-hero .breadcrumbs { display: inline-flex; align-items: center; gap: 8px; padding: 0; margin: 0 0 8px; font-size: 14px; color: var(--gray-1_color); transition: background .25s ease; }
 .brs-service-hero .breadcrumbs::before { display: none; }
 .brs-service-hero .breadcrumbs span { font-size: 18px; }
 
@@ -198,6 +198,7 @@ footer { padding: 24px 0 0; }
 .brs-legacy summary { padding-block: 24px; cursor: pointer; color: var(--gray-1_color); font-size: 18px; }
 .brs-legacy .careers, .brs-legacy .blog { scroll-margin-top: 140px; }
 .brs-legacy .brs-title { margin-bottom: var(--brs-block-gap); }
+.brs-legacy .career-item > a { margin-top: auto; }
 .brs-news { max-width: 800px; gap: 24px; }
 
 /* Fixed navigation and visible focus remain shared across all seven pages. */
@@ -205,7 +206,14 @@ footer { padding: 24px 0 0; }
 .brs-skip-link:focus { top: 12px; }
 a:focus-visible, button:focus-visible, summary:focus-visible, .field:focus-visible { outline: 2px solid #2e87ff; outline-offset: 5px; }
 .service-item::before, .solutions-item::before, .button_v1::before, .button_v2::before, .submit::before { pointer-events: none; }
-.header__logo img { display: block; width: 244px; height: auto; }
+.header__logo img { display: block; width: 200px; height: auto; }
+.header__logo { flex-shrink: 0; }
+.header__row { gap: 16px; }
+.brs-language { display: inline-flex; flex-shrink: 0; align-items: center; padding: 3px; border: 1px solid #1c4d8d70; border-radius: 10px; background: #12121266; }
+.brs-language a { display: flex; align-items: center; justify-content: center; min-width: 34px; min-height: 38px; border-radius: 7px; color: var(--gray-1_color); font-size: 13px; font-weight: 500; line-height: 1; }
+.brs-language a[aria-current="page"] { background: #1c4d8d66; color: var(--white_color); }
+.brs-language a:hover { color: var(--white_color); }
+.mobile-nav__header .brs-language { margin-left: auto; }
 .menu { flex-wrap: nowrap; align-items: center; gap: 20px; }
 .menu > li { white-space: nowrap; }
 .menu a:hover { color: #fff; }
@@ -254,6 +262,13 @@ a:focus-visible, button:focus-visible, summary:focus-visible, .field:focus-visib
     .mobile-nav { display: block; }
     .header__row { padding-block: 20px; }
     .header__logo img { max-width: 195px; }
+    .header__row > .brs-language { margin-left: auto; }
+}
+@media (min-width: 1321px) and (max-width: 1439px) {
+    html[lang="ru"] .header__row > nav, html[lang="ru"] .header__row .header__contact { display: none; }
+    html[lang="ru"] .header__burger { display: flex; width: 44px; height: 44px; }
+    html[lang="ru"] .mobile-nav { display: block; }
+    html[lang="ru"] .header__row > .brs-language { margin-left: auto; }
 }
 @media (max-width: 1024px) {
     .brs-route { display: flex; flex-direction: column; gap: 0; width: 100%; max-width: 840px; margin-inline: auto; padding: 0; }
@@ -301,6 +316,9 @@ a:focus-visible, button:focus-visible, summary:focus-visible, .field:focus-visib
     .footer__nav { flex-direction: row; }
 }
 @media (max-width: 600px) {
+    .header__row, .mobile-nav__header { gap: 8px; }
+    .header__logo img { width: 140px; }
+    .brs-language a { min-height: 40px; }
     .brs-competencies, #team .brs-competencies { grid-template-columns: minmax(0, 1fr); gap: 12px; }
     .brs-competencies li { min-height: 72px; padding: 20px; }
     .brs-solutions-grid { --solution-columns: 1; }
@@ -338,7 +356,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, .field:focus-visib
 @media (prefers-reduced-motion: reduce) {
     html, body { scroll-behavior: auto; }
     .preview--corporate video { display: none; }
-    .mobile-nav, .brs-related .solutions-item { transition: none; }
+    .mobile-nav, .brs-related .solutions-item, .brs-service-hero .breadcrumbs { transition: none; }
 }
 @media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
     .button_v1, .button_v2 { transition: background .25s ease, translate .25s ease; }

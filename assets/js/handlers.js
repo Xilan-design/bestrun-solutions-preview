@@ -1,4 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const languageLinks = [...document.querySelectorAll('[data-brs-language]')];
+  const languageTargets = languageLinks.map(link => new URL(link.href));
+  const updateLanguageTargets = () => languageLinks.forEach((link, index) => {
+    const target = new URL(languageTargets[index]);
+    target.hash = location.hash;
+    link.href = target.href;
+  });
+  updateLanguageTargets();
+  window.addEventListener('hashchange', updateLanguageTargets);
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const updateVideoMotion = () => {
     document.querySelectorAll('[data-brs-motion-video]').forEach(video => {
@@ -54,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
       else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
     }
   });
-  window.matchMedia('(max-width: 1320px)').addEventListener('change', event => {
+  window.matchMedia(document.documentElement.lang === 'ru' ? '(max-width: 1439px)' : '(max-width: 1320px)').addEventListener('change', event => {
     if (!event.matches) setNavigation(false);
     closeServices();
   });

@@ -68,17 +68,15 @@ body { color: var(--white_color); }
 .brs-editorial__body { display: grid; gap: 24px; width: 100%; max-width: 740px; min-width: 0; }
 .brs-editorial__body > .brs-competencies { margin-block-start: calc(var(--brs-block-gap) - 24px); }
 .brs-editorial__body > .brs-proof-panel { align-items: center; padding: 0; border: 0; background: none; text-align: center; }
-.brs-competencies { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 24px; width: 100%; }
-.brs-competencies li { display: flex; align-items: center; gap: 12px; min-width: 0; padding: 16px 0; border-bottom: 1px solid #afb3c421; color: var(--gray-1_color); font-size: 16px; line-height: 1.5; text-align: left; }
-.brs-competencies li::before { content: ''; flex: 0 0 4px; height: 4px; border-radius: 50%; background: var(--acc-1_color); }
+.brs-competencies { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; width: 100%; }
+.brs-competencies li { display: flex; align-items: center; gap: 18px; min-width: 0; min-height: 88px; padding: 20px 24px; border: 1px solid #1c4d8d55; border-radius: 12px; background: linear-gradient(110deg, #1c4d8d1f, #1c4d8d05); color: var(--white_color); font-size: 16px; font-weight: 500; line-height: 1.5; text-align: left; }
+.brs-competencies li::before { content: ''; flex: 0 0 6px; width: 6px; height: 6px; border-radius: 50%; background: var(--acc-1_color); box-shadow: 0 0 0 6px #2e87ff14; }
 .brs-editorial .brs-competencies { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .brs-editorial .brs-competencies li:last-child:nth-child(odd) { grid-column: 1 / -1; }
 
 /* Team: editorial introduction above a clearly separate capability grid. */
 #team .brs-editorial__body { max-width: 740px; }
 #team .brs-competencies { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-#team .brs-competencies li { gap: 18px; min-height: 88px; padding: 20px 24px; border: 1px solid #1c4d8d55; border-radius: 12px; background: linear-gradient(110deg, #1c4d8d1f, #1c4d8d05); color: var(--white_color); font-weight: 500; }
-#team .brs-competencies li::before { flex-basis: 6px; width: 6px; height: 6px; box-shadow: 0 0 0 6px #2e87ff14; }
 #team .brs-competencies li:last-child:nth-child(odd) { grid-column: auto; }
 
 /* Shared card tracks align titles, descriptions and actions within every row. */
@@ -270,8 +268,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible, .field:focus-visib
     .brs-route--centered .brs-step-number, .brs-route--centered .brs-route-copy { grid-column: 1; grid-row: auto; }
     .brs-route--centered .brs-route-copy { max-width: 460px; }
     .brs-route--centered .solutions-item::before, .brs-route--centered .solutions-item::after { inset: auto auto 0 calc(50% - 1px); width: 2px; height: 56px; }
-    #team .brs-competencies { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    #team .brs-competencies li:last-child:nth-child(odd) { grid-column: 1 / -1; }
+    .brs-competencies, #team .brs-competencies { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .brs-competencies li:last-child:nth-child(odd), #team .brs-competencies li:last-child:nth-child(odd) { grid-column: 1 / -1; }
     .brs-sap-icon { width: 64px; height: 64px; }
     .brs-solutions-grid { --solution-columns: 2; }
     .brs-solutions-grid > .brs-solution:nth-child(n) { --line-position: 0%; }
@@ -303,8 +301,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible, .field:focus-visib
     .footer__nav { flex-direction: row; }
 }
 @media (max-width: 600px) {
-    #team .brs-competencies { grid-template-columns: minmax(0, 1fr); gap: 12px; }
-    #team .brs-competencies li { min-height: 72px; padding: 20px; }
+    .brs-competencies, #team .brs-competencies { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+    .brs-competencies li { min-height: 72px; padding: 20px; }
     .brs-solutions-grid { --solution-columns: 1; }
     .brs-solutions-grid > .brs-solution { align-items: center; padding: 32px 16px; }
     .brs-solutions-grid > .brs-solution:nth-child(n)::before { display: none; }

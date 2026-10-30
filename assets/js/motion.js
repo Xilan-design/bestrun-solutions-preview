@@ -217,7 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
           });
           context[nextName]();
         });
-        if (desktop && !group.root.classList.contains('brs-route--long')) ScrollTrigger.create({
+        if (desktop && stages.length <= 4) ScrollTrigger.create({
           trigger: group.root, start: 'top 85%', once: true,
           onEnter: () => context[revealName](stages), onEnterBack: () => context[revealName](stages),
           onLeave: () => skip(stages),

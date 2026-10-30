@@ -1,7 +1,17 @@
 /* BRS motion: progressive enhancement, native scrolling and readable source HTML. */
+// Run in the head, before hero markup can paint. A failed library still leaves
+// readable HTML: release the CSS guard here or through the bounded fallback.
+const heroBootRoot = document.documentElement;
+if (!matchMedia('(prefers-reduced-motion: reduce)').matches && !location.hash) {
+  heroBootRoot.classList.add('brs-hero-pending');
+  setTimeout(() => heroBootRoot.classList.remove('brs-hero-pending'), 3500);
+}
 document.addEventListener('DOMContentLoaded', () => {
   const { gsap, ScrollTrigger } = window;
-  if (!gsap || !ScrollTrigger) return;
+  if (!gsap || !ScrollTrigger) {
+    heroBootRoot.classList.remove('brs-hero-pending');
+    return;
+  }
   gsap.registerPlugin(ScrollTrigger);
 
   const seen = new WeakSet();
@@ -34,12 +44,14 @@ document.addEventListener('DOMContentLoaded', () => {
   media.add({ desktop: '(min-width: 1025px)', mobile: '(max-width: 1024px)', reduce: '(prefers-reduced-motion: reduce)' }, context => {
     const { desktop, reduce } = context.conditions;
     if (reduce) {
+      heroBootRoot.classList.remove('brs-hero-pending');
       document.documentElement.dataset.brsMotionMode = 'reduced';
       allTargets.forEach(node => { seen.add(node); node.dataset.brsMotion = 'ready'; });
       return;
     }
     document.documentElement.dataset.brsMotionMode = 'enabled';
     const listeners = [];
+    let cancelIntro = () => {};
     const faqStates = new Map();
     const listen = (node, event, handler) => {
       node.addEventListener(event, handler);
@@ -97,18 +109,39 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const intro = heroGroups.filter(node => !seen.has(node));
-    if (intro.length && hero.getBoundingClientRect().bottom > 0 && scrollY < 200) {
-      const timeline = gsap.timeline({ defaults: { duration: .75, ease: 'power3.out' } });
+    if (intro.length && heroBootRoot.classList.contains('brs-hero-pending') && hero.getBoundingClientRect().bottom > 0 && scrollY < 200) {
+      const timeline = gsap.timeline({ paused: true, defaults: { duration: .9, ease: 'power2.out' } });
+      gsap.set(intro, { opacity: 0, y: (index, node) => node.matches('h1') ? 26 : 16 });
       intro.forEach((node, index) => {
         seen.add(node);
-        node.dataset.brsMotion = 'revealing';
-        timeline.fromTo(node, { y: node.matches('h1') ? 26 : 16, opacity: 0 }, {
+        node.dataset.brsMotion = 'pending';
+        timeline.to(node, {
           y: 0, opacity: 1, clearProps: 'opacity,transform', onComplete: () => ready(node),
-        }, index === 0 ? 0 : '<0.11');
+        }, index * .16);
       });
+      // Font loading used to consume the whole entrance while glyphs were hidden.
+      // Keep the timeline paused until fonts settle (bounded for slow/offline fonts).
+      let cancelled = false, started = false, frame;
+      const start = () => {
+        if (cancelled || started) return;
+        started = true;
+        clearTimeout(fontTimeout);
+        frame = requestAnimationFrame(() => {
+          frame = requestAnimationFrame(() => {
+            if (cancelled) return;
+            if (hero.getBoundingClientRect().bottom <= 0 || scrollY >= 200) { context.finish(intro); return; }
+            intro.filter(node => !completed.has(node)).forEach(node => { node.dataset.brsMotion = 'revealing'; });
+            timeline.play(0);
+          });
+        });
+      };
+      const fontTimeout = setTimeout(start, 1800);
+      Promise.resolve(document.fonts?.ready).then(start, start);
+      cancelIntro = () => { cancelled = true; clearTimeout(fontTimeout); cancelAnimationFrame(frame); };
     } else {
       heroGroups.forEach(node => { seen.add(node); ready(node); });
     }
+    heroBootRoot.classList.remove('brs-hero-pending');
 
     // A keyboard jump completes the relevant entrance before the control is used.
     listen(document, 'focusin', event => {
@@ -166,6 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
       listen(legacy, 'toggle', context.legacy);
     }
     return () => {
+      cancelIntro();
       listeners.forEach(remove => remove());
       faqStates.forEach((open, details) => { details.open = open; });
     };

@@ -26,6 +26,7 @@
 
 @font-face {
     font-family: 'Inter';
+    font-display: swap;
     src: local('Inter Regular'), local('Inter-Regular'),
         url('../fonts/Inter-Regular.woff2') format('woff2'),
         url('../fonts/Inter-Regular.woff') format('woff');
@@ -35,6 +36,7 @@
 
 @font-face {
     font-family: 'Inter';
+    font-display: swap;
     src: local('Inter Medium'), local('Inter-Medium'),
         url('../fonts/Inter-Medium.woff2') format('woff2'),
         url('../fonts/Inter-Medium.woff') format('woff');
@@ -44,6 +46,7 @@
 
 @font-face {
     font-family: 'Inter';
+    font-display: swap;
     src: local('Inter SemiBold'), local('Inter-SemiBold'),
         url('../fonts/Inter-SemiBold.woff2') format('woff2'),
         url('../fonts/Inter-SemiBold.woff') format('woff');
@@ -53,6 +56,7 @@
 
 @font-face {
     font-family: 'Inter';
+    font-display: swap;
     src: local('Inter SemiBold'), local('Inter-SemiBold'),
         url('../fonts/Inter-Bold.woff2') format('woff2'),
         url('../fonts/Inter-Bold.woff') format('woff');

@@ -6,6 +6,10 @@
     --brs-card-space: 32px;
 }
 body { color: var(--white_color); }
+/* Only enabled by the early head script; no-JS and reduced-motion stay visible. */
+@media (prefers-reduced-motion: no-preference) {
+    .brs-hero-pending :is(.preview--corporate .preview__column, .brs-service-hero .preview-portfolio__column) > * { opacity: 0; }
+}
 .headline_h1 { letter-spacing: -.035em; }
 .headline_h2 { letter-spacing: -.025em; }
 .headline_h3, .headline_h4 { letter-spacing: -.018em; }

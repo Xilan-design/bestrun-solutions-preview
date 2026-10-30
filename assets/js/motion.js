@@ -27,13 +27,12 @@ document.addEventListener('DOMContentLoaded', () => {
   collect('main .brs-section__column > .brs-copy, main .brs-section__column > .brs-intro, main .brs-editorial__body > .brs-copy, main .brs-editorial__body > .brs-intro', 'text');
   collect('main .brs-grid > *', 'card');
   collect('main .brs-metrics > .teams-item', 'metric');
-  collect('main .brs-step-flow > li', 'step');
-  collect('main .brs-lifecycle > li', 'route');
+  collect('main .brs-route > li', 'route');
   collect('main .brs-rate, main .brs-competencies > li, main .brs-faq-item', 'row');
   collect('main .brs-case, main .brs-section__column > .brs-proof-panel, main .brs-contracts > article, main .contacts__content, main .contacts .card, footer .footer__column', 'panel');
   const ordered = [...configs.keys()].sort((a, b) => a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1);
   const routeStages = ordered.filter(node => configs.get(node) === 'route');
-  let routeStarted = false;
+  const routeGroups = [...document.querySelectorAll('main .brs-route')].map(root => ({ root, stages: [...root.children], started: false }));
   const hero = document.querySelector('.preview--corporate, .brs-service-hero');
   const heroGroups = hero ? [...hero.querySelector('.preview__column, .preview-portfolio__column').children] : [];
   const allTargets = [...heroGroups, ...ordered];
@@ -51,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.documentElement.dataset.brsMotionMode = 'reduced';
       allTargets.forEach(node => { seen.add(node); node.dataset.brsMotion = 'ready'; });
       routeStages.forEach(node => { node.dataset.routeState = 'complete'; });
-      routeStarted = true;
+      routeGroups.forEach(group => { group.started = true; });
       return;
     }
     document.documentElement.dataset.brsMotionMode = 'enabled';
@@ -166,48 +165,70 @@ document.addEventListener('DOMContentLoaded', () => {
         ready(stage);
       });
     });
-    if (routeStages.length) {
-      if (routeStarted || routeStages.every(stage => stage.getBoundingClientRect().bottom <= 0)) {
-        context.routeFinish(routeStages);
+    routeGroups.forEach((group, routeIndex) => {
+      const stages = group.stages;
+      const revealName = `routeReveal${routeIndex}`;
+      if (group.started || stages.every(stage => stage.getBoundingClientRect().bottom <= 0)) {
+        context.routeFinish(stages);
       } else {
-        const routeTimeline = gsap.timeline({ paused: true });
-        routeStages.forEach(stage => {
+        const queue = [];
+        const nextName = `routeNext${routeIndex}`;
+        let activeStage, stageTimeline;
+        const passed = stage => stage.getBoundingClientRect().top + stage.querySelector('.brs-step-number').offsetHeight <= (document.querySelector('.header')?.getBoundingClientRect().bottom || 0);
+        const skip = skipped => {
+          skipped.forEach(stage => { const index = queue.indexOf(stage); if (index !== -1) queue.splice(index, 1); });
+          if (skipped.includes(activeStage)) { stageTimeline?.kill(); activeStage = null; }
+          context.routeFinish(skipped);
+          context[nextName]();
+        };
+        stages.forEach(stage => {
           stage.dataset.brsMotion = 'pending';
           stage.dataset.routeState = 'pending';
           gsap.set(stage, { '--route-progress': 0 });
           gsap.set(stage.querySelector('.brs-step-number'), { opacity: .4, scale: .85 });
           gsap.set(stage.querySelectorAll('.brs-route-copy'), { opacity: 0, y: 12 });
         });
-        context.add('routeReveal', stages => {
-          stages.filter(stage => !seen.has(stage)).forEach(stage => {
-            if (stage.getBoundingClientRect().bottom <= 0) { context.routeFinish([stage]); return; }
-            routeStarted = true;
-            seen.add(stage);
-            stage.dataset.brsMotion = 'revealing';
-            const start = Math.max(routeTimeline.duration(), routeTimeline.time());
-            routeTimeline.to(stage.querySelector('.brs-step-number'), {
+        context.add(nextName, () => {
+          if (activeStage) return;
+          while (queue.length && passed(queue[0])) context.routeFinish([queue.shift()]);
+          if (!queue.length) return;
+          const stage = queue.shift();
+          activeStage = stage;
+          stageTimeline = gsap.timeline({ onComplete: () => {
+            context.routeFinish([stage]);
+            activeStage = null;
+            context[nextName]();
+          }}).to(stage.querySelector('.brs-step-number'), {
               opacity: 1, scale: 1, duration: .42, ease: 'back.out(1.3)',
               onStart: () => { stage.dataset.routeState = 'active'; },
-            }, start).to(stage.querySelectorAll('.brs-route-copy'), {
+            }, 0).to(stage.querySelectorAll('.brs-route-copy'), {
               opacity: 1, y: 0, duration: .45, stagger: .04, ease: 'power2.out',
-            }, start + .12).to(stage, {
+            }, .12).to(stage, {
               '--route-progress': 1, duration: .55, ease: 'power2.inOut',
-            }, start + .25).call(() => context.routeFinish([stage]), null, start + .8);
+            }, .25);
+        });
+        context.add(revealName, stages => {
+          stages.filter(stage => !seen.has(stage)).forEach(stage => {
+            if (passed(stage)) { context.routeFinish([stage]); return; }
+            group.started = true;
+            seen.add(stage);
+            stage.dataset.brsMotion = 'revealing';
+            queue.push(stage);
           });
-          routeTimeline.play();
+          context[nextName]();
         });
-        if (desktop) ScrollTrigger.create({
-          trigger: routeStages[0].parentElement, start: 'top 85%', once: true,
-          onEnter: () => context.routeReveal(routeStages), onEnterBack: () => context.routeReveal(routeStages),
-          onLeave: () => context.routeFinish(routeStages),
+        if (desktop && !group.root.classList.contains('brs-route--long')) ScrollTrigger.create({
+          trigger: group.root, start: 'top 85%', once: true,
+          onEnter: () => context[revealName](stages), onEnterBack: () => context[revealName](stages),
+          onLeave: () => skip(stages),
         });
-        else routeStages.forEach(stage => ScrollTrigger.create({
+        else stages.forEach(stage => ScrollTrigger.create({
           trigger: stage, start: 'top 85%', once: true,
-          onEnter: () => context.routeReveal([stage]), onEnterBack: () => context.routeReveal([stage]),
-          onLeave: () => context.routeFinish([stage]),
+          onEnter: () => context[revealName]([stage]), onEnterBack: () => context[revealName]([stage]),
+          onLeave: () => skip([stage]),
         }));
       }
-    }
+    });
 
     // A keyboard jump completes the relevant entrance before the control is used.
     listen(document, 'focusin', event => {

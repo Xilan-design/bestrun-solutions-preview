@@ -133,6 +133,7 @@ body { color: var(--white_color); }
 .brs-case__body { display: flex; flex-direction: column; align-items: flex-start; gap: 24px; min-width: 0; color: var(--gray-1_color); }
 .brs-proof-panel { display: flex; flex-direction: column; align-items: flex-start; gap: 24px; width: 100%; padding: 32px 40px; border: 1px solid #1c4d8d70; border-radius: 24px; background: linear-gradient(135deg, #1c4d8d30, #12121230); }
 .brs-proof-panel p { max-width: 800px; color: var(--gray-1_color); }
+#s4hana-migration .brs-proof-panel { align-items: center; text-align: center; }
 .brs-contracts { display: flex; flex-direction: column; gap: 24px; width: 100%; }
 .brs-contracts article { max-width: none; align-items: flex-start; text-align: left; }
 .brs-contract-primary { gap: 24px; padding: 48px; background: linear-gradient(120deg, #082254b3, #1d1d21); }

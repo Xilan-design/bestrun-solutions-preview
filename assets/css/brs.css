@@ -183,6 +183,22 @@ body { color: var(--white_color); }
 .brs-legal-links { display: flex; flex-wrap: wrap; gap: 16px 24px; margin-top: 24px; font-size: 14px; line-height: 1.5; }
 .brs-legal-links a { color: var(--gray-1_color); text-decoration: underline; text-underline-offset: 4px; }
 .brs-legal-links span { color: var(--gray-2_color); }
+.brs-company-details { display: grid; gap: 16px; width: 100%; padding-top: 24px; border-top: 1px solid #afb3c426; }
+.brs-company-details address { font-style: normal; color: var(--gray-1_color); line-height: 1.6; }
+.brs-company-register { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px 16px; margin-top: 20px; }
+.brs-company-register > div { min-width: 0; }
+.brs-company-register dt { font-size: 14px; color: var(--gray-1_color); margin-bottom: 6px; }
+.brs-company-register dd { font-size: 16px; line-height: 1.6; overflow-wrap: anywhere; }
+.brs-company-register__wide { grid-column: 1 / -1; }
+.brs-story-hero h1 { max-width: 1040px; font-size: clamp(30px, 3.4vw, 48px); }
+.brs-article { max-width: 820px; text-align: left; }
+.brs-article p { text-align: left; }
+.brs-article ul { display: grid; gap: 12px; padding-left: 22px; list-style: disc; }
+.brs-article li { line-height: 1.65; }
+.brs-article img { max-width: min(100%, 240px); height: auto; justify-self: center; }
+.brs-inline-link { color: var(--white_color); text-decoration: underline; text-underline-offset: 4px; overflow-wrap: anywhere; }
+.brs-case-card { grid-row: span 3; }
+.brs-case-card .button_v2 { align-self: end; width: 100%; text-align: center; }
 .brs-preview-notice { padding-left: 16px; border-left: 2px solid #1c4d8d; color: var(--gray-1_color); font-size: 14px; line-height: 1.5; }
 .brs-related .solutions-item { justify-content: space-between; align-items: flex-start; gap: 24px; min-height: 200px; text-align: left; transition: background .2s ease; }
 .brs-related .solutions-item > span { font-size: 28px; color: var(--gray-1_color); }
@@ -192,7 +208,7 @@ footer { padding: 24px 0 0; }
 .footer__row { gap: 24px; align-items: flex-start; }
 .footer__nav { flex-wrap: wrap; gap: 16px 24px; }
 .footer__text { font-size: 14px; }
-.footer__nav li a, .footer__link { font-size: 14px; line-height: 1.5; }
+.footer__nav li a, .footer__link { font-size: 14px; line-height: 1.5; overflow-wrap: anywhere; }
 .brs-legacy { padding-top: 0; }
 .brs-legacy details { border-top: 1px solid var(--gray-3_color); }
 .brs-legacy summary { padding-block: 24px; cursor: pointer; color: var(--gray-1_color); font-size: 18px; }
@@ -206,7 +222,7 @@ footer { padding: 24px 0 0; }
 .brs-skip-link:focus { top: 12px; }
 a:focus-visible, button:focus-visible, summary:focus-visible, .field:focus-visible { outline: 2px solid #2e87ff; outline-offset: 5px; }
 .service-item::before, .solutions-item::before, .button_v1::before, .button_v2::before, .submit::before { pointer-events: none; }
-.header__logo img { display: block; width: 200px; height: auto; }
+.header__logo img { display: block; width: 180px; height: auto; }
 .header__logo { flex-shrink: 0; }
 .header__row { gap: 16px; }
 .brs-language { display: inline-flex; flex-shrink: 0; align-items: center; padding: 3px; border: 1px solid #1c4d8d70; border-radius: 10px; background: #12121266; }
@@ -214,7 +230,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, .field:focus-visib
 .brs-language a[aria-current="page"] { background: #1c4d8d66; color: var(--white_color); }
 .brs-language a:hover { color: var(--white_color); }
 .mobile-nav__header .brs-language { margin-left: auto; }
-.menu { flex-wrap: nowrap; align-items: center; gap: 20px; }
+.menu { flex-wrap: nowrap; align-items: center; gap: 14px; font-size: 15px; }
 .menu > li { white-space: nowrap; }
 .menu a:hover { color: #fff; }
 .header__contact { white-space: nowrap; }
@@ -404,6 +420,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible, .field:focus-visib
     .brs-final-cta .brs-section__column { gap: 24px; }
     .brs-integrators { padding-block: 32px; }
     .brs-contact-layout, .contacts.brs-section .contacts__grid { gap: 24px; }
+    .brs-company-register { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+    .brs-company-details { padding-top: 20px; }
     .contacts.brs-section .contacts__content { gap: 16px; }
     .contacts.brs-section .card { padding: 20px; border-radius: 24px; }
     .contacts .card__title { font-size: 22px; margin-bottom: 20px; }

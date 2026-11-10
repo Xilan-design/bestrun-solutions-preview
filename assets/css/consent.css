@@ -1,0 +1,19 @@
+.brs-consent-banner,.brs-consent-dialog { box-sizing:border-box; color:#fff; background:#121923; border:1px solid #284264; border-radius:20px; padding:24px; font:400 14px/1.55 Inter,sans-serif; box-shadow:0 16px 60px #0006; }
+.brs-consent-banner { position:fixed; z-index:10000; bottom:20px; left:50%; transform:translateX(-50%); width:min(900px,calc(100% - 40px)); max-height:calc(100dvh - 40px); overflow:auto; }
+.brs-consent-banner[hidden] { display:none; }
+.brs-consent-banner h2,.brs-consent-dialog h2 { margin:0 0 10px; font-size:22px; line-height:1.3; font-weight:600; }
+.brs-consent-banner p,.brs-consent-dialog p { color:#afb3c4; margin:0 0 18px; }
+.brs-consent-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
+.brs-consent-button { display:inline-flex; align-items:center; justify-content:center; min-height:44px; padding:11px 18px; border:1px solid #2e87ff; border-radius:10px; color:#fff; background:#162337; font:500 14px/1.35 Inter,sans-serif; cursor:pointer; }
+.brs-consent-button:hover { background:#203654; }
+.brs-consent-button:focus-visible,.brs-consent-banner a:focus-visible,.brs-consent-category input:focus-visible { outline:2px solid #fff; outline-offset:4px; }
+.brs-consent-reopen { margin-top:20px; align-self:flex-start; }
+.brs-consent-dialog { width:min(620px,calc(100% - 32px)); max-height:calc(100dvh - 32px); overflow:auto; margin:auto; }
+.brs-consent-dialog::backdrop { background:#000b; }
+.brs-consent-dialog > .brs-consent-button { margin-top:14px; }
+.brs-consent-category { display:flex; align-items:flex-start; gap:14px; padding:18px 0; border-top:1px solid #2d3b4f; }
+div.brs-consent-category { display:block; }
+.brs-consent-category p { margin:6px 0 0; }
+.brs-consent-category input { width:22px; height:22px; flex:0 0 22px; accent-color:#2e87ff; margin-top:2px; }
+.brs-consent-banner a { display:inline-block; color:#8cbcff; margin-top:14px; }
+@media(max-width:600px) { .brs-consent-banner { bottom:10px; width:calc(100% - 20px); padding:18px; border-radius:16px; } .brs-consent-actions { display:grid; grid-template-columns:1fr; } .brs-consent-dialog { padding:20px; } }

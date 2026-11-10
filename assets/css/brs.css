@@ -219,6 +219,18 @@ body { color: var(--white_color); }
 .brs-product-marks figure { display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:18px; }
 .brs-product-marks img { max-width:100%; height:auto; object-fit:contain; }
 .brs-product-marks figcaption { color:#fff; font-size:24px; font-weight:500; }
+/* Overview reads on one consistent editorial axis, with quiet product attribution. */
+.brs-overview-body { width:100%; max-width:820px; margin-inline:auto; display:grid; gap:36px; color:var(--gray-1_color); }
+.brs-overview-products { grid-template-columns:repeat(2,minmax(0,1fr)); width:100%; padding-bottom:32px; border-bottom:1px solid #afb3c426; gap:32px; align-items:center; }
+.brs-overview-products figure { min-width:0; }
+.brs-overview-products figure:first-child img { width:220px; }
+.brs-overview-products figure:last-child img { width:88px; }
+.brs-overview-products figcaption { font-size:20px; }
+.brs-overview-intro { display:grid; gap:24px; }
+.brs-overview-topic { display:grid; gap:14px; }
+.brs-overview-topic h3 { color:var(--white_color); font-size:22px; line-height:1.4; font-weight:500; }
+.brs-overview-duration { padding:20px 24px; border-left:2px solid var(--acc-1_color); background:linear-gradient(90deg,#1c4d8d24,transparent); }
+@media(max-width:767px) { .brs-overview-body { gap:28px; } .brs-overview-intro { gap:20px; } .brs-overview-products { gap:20px; padding-bottom:24px; } .brs-overview-products figure:last-child img { width:64px; } .brs-overview-products figcaption { font-size:16px; } .brs-overview-topic h3 { font-size:20px; } .brs-overview-duration { padding:16px 18px; } }
 .brs-case-tasks { grid-template-columns:repeat(2,minmax(0,1fr)); }
 .brs-result-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:40px; max-width:1100px; margin-inline:auto; }
 .brs-result-list article { padding-top:24px; border-top:1px solid #1c4d8d88; }

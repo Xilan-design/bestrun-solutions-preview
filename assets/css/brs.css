@@ -496,3 +496,20 @@ a:focus-visible, button:focus-visible, summary:focus-visible, .field:focus-visib
 @media(max-width:767px) {
   .brs-ucell-mark { width:min(100%,260px); }
 }
+
+/* Legal documents share the site shell and keep wide data tables scrollable. */
+.brs-section.brs-document { padding-top:clamp(100px,12vw,160px); }
+.brs-document__body { display:grid; gap:16px; max-width:950px; margin-inline:auto; color:var(--gray-1_color); line-height:1.65; overflow-wrap:anywhere; }
+.brs-document__body h1 { margin-bottom:8px; text-wrap:balance; }
+.brs-document__body :is(h2,h3) { margin-top:16px; color:var(--white_color); }
+.brs-document-date { text-align:center; }
+.brs-document__body :is(ul,ol) { display:grid; gap:10px; padding-inline-start:24px; }
+.brs-document__body ul > li { list-style-type:disc !important; }
+.brs-document__body ol > li { list-style-type:decimal; }
+.brs-document__body li > ul { margin-top:8px; }
+.brs-document__body a { color:#8cbcff; text-decoration:underline; }
+.brs-document-table { width:100%; min-width:0; overflow-x:auto; }
+.brs-document-table table { width:100%; min-width:560px; border-collapse:collapse; }
+.brs-document-table :is(th,td) { padding:12px; border:1px solid #afb3c43b; text-align:left; vertical-align:top; }
+.brs-document-table th { background:#1c4d8d32; color:var(--white_color); }
+.brs-document-table p + p { margin-top:8px; }

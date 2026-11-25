@@ -493,6 +493,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible, .field:focus-visib
 .brs-ucell-products img { display:block; width:min(40%,240px); height:auto; }
 .brs-project-card__image.brs-ucell-thumbnail { display:grid; justify-items:center; align-content:center; gap:20px; }
 .brs-project-card__image.brs-ucell-thumbnail img { width:min(62%,200px); height:auto; }
+.brs-ucell-thumbnail img:first-child { transform:translateX(-14%); }
+.brs-ucell-thumbnail img:last-child { transform:translateX(14%); }
 @media(max-width:767px) {
   .brs-ucell-mark { width:min(100%,260px); }
 }

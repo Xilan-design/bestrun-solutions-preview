@@ -479,7 +479,6 @@ a:focus-visible, button:focus-visible, summary:focus-visible, .field:focus-visib
 /* Ucell case */
 .brs-project-grid--portfolio .brs-project-card { grid-row:span 5; }
 .brs-ucell-disclaimer { max-width:66ch; color:var(--gray-1_color); font-size:14px; line-height:1.55; }
-.brs-ucell-tasks { margin-inline:auto; }
 .brs-ucell-mark {
     display:grid;
     place-items:center;
@@ -490,15 +489,10 @@ a:focus-visible, button:focus-visible, summary:focus-visible, .field:focus-visib
 }
 .brs-ucell-mark img { width:min(66%,240px); height:auto; filter:brightness(0) invert(1); }
 .brs-ucell-metrics dd { margin-block:0; }
-.brs-ucell-products, .brs-project-card__image.brs-ucell-thumbnail { display:grid; justify-items:center; align-content:center; gap:20px; }
-.brs-ucell-products { padding:24px 16px; border-block:1px solid #afb3c426; }
-.brs-ucell-products img { display:block; max-width:100%; height:auto; }
+.brs-ucell-products { display:flex; align-items:center; justify-content:center; gap:clamp(20px,5vw,64px); padding:clamp(32px,4vw,52px) 16px; border-block:1px solid #afb3c426; }
+.brs-ucell-products img { display:block; width:min(40%,240px); height:auto; }
+.brs-project-card__image.brs-ucell-thumbnail { display:grid; justify-items:center; align-content:center; gap:20px; }
 .brs-project-card__image.brs-ucell-thumbnail img { width:min(62%,200px); height:auto; }
-.brs-ucell-tasks { width:100%; max-width:820px; }
-.brs-ucell-tasks li { display:grid; grid-template-columns:auto minmax(0,1fr); align-items:baseline; gap:16px; padding:16px 0; border-top:1px solid #afb3c426; }
-.brs-ucell-tasks span { color:#8cbcff; font-variant-numeric:tabular-nums; }
-.brs-ucell-results li { padding-top:16px; border-top:1px solid #afb3c426; }
-.brs-ucell-results strong { color:var(--white_color); }
 @media(max-width:767px) {
   .brs-ucell-mark { width:min(100%,260px); }
 }

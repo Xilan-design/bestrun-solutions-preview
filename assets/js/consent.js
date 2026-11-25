@@ -47,12 +47,7 @@
   window.BRSConsent = { get: () => choice ? { ...choice } : null, open: () => {} };
   load();
   document.addEventListener('DOMContentLoaded', () => {
-    const ru = document.documentElement.lang.startsWith('ru');
-    const text = ru ? {
-      title: 'Ваш выбор cookies', description: 'Необходимое хранилище обеспечивает работу сайта и запоминает ваш выбор. Аналитика и рекламные cookies используются только с вашего согласия.',
-      accept: 'Принять все', reject: 'Отклонить необязательные', settings: 'Настройки cookies', save: 'Сохранить выбор', close: 'Закрыть настройки',
-      necessary: 'Необходимые', necessaryText: 'Всегда включены: работа сайта и сохранение настроек cookies.', analytics: 'Аналитика', analyticsText: 'Помогает измерять посещаемость сайта с помощью Google Analytics.', marketing: 'Реклама', marketingText: 'Измерение рекламы Google Ads и персонализация рекламы.', policy: 'Политика cookies', always: 'Всегда включены'
-    } : {
+    const text = {
       title: 'Your cookie preferences', description: 'Essential storage keeps the website working and remembers your choice. Analytics and advertising cookies are used only with your consent.',
       accept: 'Accept all', reject: 'Reject optional', settings: 'Cookie settings', save: 'Save preferences', close: 'Close settings',
       necessary: 'Essential', necessaryText: 'Always enabled: website functionality and remembering your cookie preferences.', analytics: 'Analytics', analyticsText: 'Helps measure website visits using Google Analytics.', marketing: 'Advertising', marketingText: 'Google Ads measurement and advertising personalisation.', policy: 'Cookie Policy', always: 'Always enabled'
